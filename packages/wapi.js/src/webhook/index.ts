@@ -125,7 +125,13 @@ export class Webhook implements WebhookInterface {
           entry.changes.forEach((change) => {
             const messages = change.value.messages;
             const statuses = change.value.statuses;
-
+            if (
+              this.client.emitOnlyBusinessMessages &&
+              change.value.metadata.phone_number_id !==
+                this.client.phoneNumberId
+            ) {
+              return;
+            }
             if (statuses) {
               statuses.forEach((status) => {
                 switch (status.status) {

@@ -77,6 +77,8 @@ export class Client extends EventEmitter implements ClientInterface {
    */
   private static readonly apiVersion = "v19.0";
 
+  public emitOnlyBusinessMessages: boolean;
+
   /**
    * @param {object} params
    * @param {string} params.webhookSecret
@@ -94,8 +96,10 @@ export class Client extends EventEmitter implements ClientInterface {
     phoneNumberId: string;
     businessAccountId: string;
     port: number;
+    emitOnlyBusinessMessages: boolean;
   }) {
     super();
+    this.emitOnlyBusinessMessages = params.emitOnlyBusinessMessages;
     this.webhook = new Webhook({
       client: this,
       webhookSecret: params.webhookSecret,

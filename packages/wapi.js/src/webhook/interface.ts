@@ -39,4 +39,6 @@ export interface WebhookInterface {
    * @param cb - A callback function to be executed when the webhook starts listening.
    */
   listen: (cb: () => void) => void;
+
+  emitOnlyBusinessMessages?: boolean;
 }
